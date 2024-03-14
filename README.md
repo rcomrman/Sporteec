@@ -38,7 +38,7 @@ Architecture :
 
         - envoi les infos a la base de donne : Sport , heure , lieux , niveau , compte (token)
 
-        - renvoi une liste de match : chaque match contiens : Sport , heure , lieux , niveau , compte (token)
+    Romain    - renvoi une liste de match : chaque match contiens : Sport , heure , lieux , niveau , compte (token)
     - render matches
 
         render the list of compatible request
