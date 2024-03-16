@@ -1,0 +1,61 @@
+voici le code en python pour le systeme de recherche des annonces, le résultat dépendra de plusieurs critères dont certains fixe et d'autre amovible ( niveau distance avis etc...)
+
+la distance entre les 2 localisations est trouvé grace a la formule de la haversine; le code présent ici sera modulée pour convenir a la partie finale du code complet.
+
+  import math
+import random
+
+def haversine_distance(lat1, lon1, lat2, lon2):
+    # Convertir les degrés en radians
+    lat1 = math.radians(lat1)
+    lon1 = math.radians(lon1)
+    lat2 = math.radians(lat2)
+    lon2 = math.radians(lon2)
+
+    # Rayon de la Terre en kilomètres
+    rayon_terre = 6371.0
+
+    # Différence de latitude et de longitude
+    dlat = abs(lat2 - lat1)
+    dlon = abs(lon2 - lon1)
+
+    # Formule de la distance haversine
+    a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2)**2
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    distance = rayon_terre * c
+
+    return distance
+
+# Génération aléatoire des coordonnées pour les deux points
+lat1 = random.uniform(41, 51)
+lon1 = random.uniform(-5, 9)
+lat2 = random.uniform(41, 51)
+lon2 = random.uniform(-5, 9)
+
+distance = haversine_distance(lat1, lon1, lat2, lon2)
+print("La distance entre les points ({:.4f}, {:.4f}) et ({:.4f}, {:.4f}) est d'environ {:.2f} kilomètres.".format(lat1, lon1, lat2, lon2, distance))
+
+voici ensuite le système de notation des annonces ( des listes aléatoires sont crée ici pour désigner les annonces ). il sera complété sous peux avec un systeme de graduationvoici ensuite le système de notation des annonces ( des listes aléatoires sont crée ici pour désigner les annonces ). il sera complété sous peux avec un systeme de graduation
+
+import random
+
+def generer_liste():
+    premier_nombre = random.randint(0, 5)
+    deuxieme_nombre = random.randint(0, 5)
+    troisieme_nombre = random.randint(0, 100)
+    return [premier_nombre, deuxieme_nombre, troisieme_nombre]
+
+listes2 = []
+nombre_de_listes = 100  # Vous pouvez modifier ce nombre selon vos besoins
+listes = [generer_liste() for _ in range(nombre_de_listes)]
+
+print("Listes générées :")
+for liste in listes:
+    liste2 = []
+    liste2.append(float(liste[0])*200)
+    liste2.append(float(liste[1])*400)
+    liste2.append(float(liste[2])*200)
+    listes2.append(liste)
+    listes2.append((float(liste2[0])+float(liste2[1])+float(liste2[2]**2))/2003000)
+print (listes2)
+    
